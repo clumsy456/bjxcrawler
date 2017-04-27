@@ -30,8 +30,9 @@ with open('rootUrls.txt', 'r') as f:
 	for line in f.readlines():
 		rootUrls.add(line.strip())
 
-with open('latestUrl.txt', 'r') as f:
-	latestUrl = f.readline().strip()
+with open('latestInfo.txt', 'r') as f:
+	latestID = int(f.readline().strip())
+	latestDate = f.readline().strip()
 
 finishUrls = set()
 
@@ -139,10 +140,6 @@ def getContent(bsObj, headType):
 		content = content + para.get_text().strip() + '\n'
 	return content
 
-latestUrlSplit = latestUrl.split('/')
-latestID = int(latestUrlSplit[-1][:-6])
-latestDate = latestUrlSplit[-2]
-
 sortedRootUrls = sortUrl(rootUrls)
 
 print('正在加载已读内容......')
@@ -174,7 +171,6 @@ try:
 					IDIsCorrect = True
 					latestID = urlID
 					latestDate = urlDate
-					latestUrl = url
 					print('因编码错误跳过%s' % url)
 					break
 				if url in finishUrls:
@@ -182,7 +178,6 @@ try:
 					IDIsCorrect = True
 					latestID = urlID
 					latestDate = urlDate
-					latestUrl = url
 					print('已存在%s' % url)
 					break
 				bsObj = crawl(url)
@@ -203,7 +198,6 @@ try:
 					IDIsCorrect = True
 					latestID = urlID
 					latestDate = urlDate
-					latestUrl = url
 					num = num + 1
 					print(url + '\n' + title)
 					break
@@ -214,6 +208,7 @@ try:
 				urlDate = addDate(urlDate)
 		if not IDIsCorrect:
 			print('ID%d读取错误' % urlID)
+			latestID = urlID
 			print('日期区间为%s到%s' % (latestDate, upperLimitDate))
 			errorIDs.add(urlID)
 			with open('errorID.txt', 'a') as f:
@@ -231,7 +226,8 @@ finally:
 	conn.close()
 	print('已断开数据库')
 	print('本次共读取%d条' % num)
-	print('最新已读取链接:')
-	with open('latestUrl.txt', 'w') as f:
-		f.write(latestUrl + '\n')
-		print(latestUrl)
+	print('最新已读取ID及日期:')
+	with open('latestInfo.txt', 'w') as f:
+		f.write(str(latestID) + '\n')
+		f.write(latestDate + '\n')
+		print(str(latestID) + '\t' + latestDate)
