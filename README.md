@@ -8,7 +8,7 @@ This is a crawler of news in the website of BEIJIXING POWER (bjx.com.cn). A MySQ
 ## MySQL安装及创建数据库
 [MySQL](https://www.mysql.com/)是一种开源的关系型数据库管理系统。采用默认步骤进行安装MySQL服务器。安装完成后，创建数据库。
 
-利用bjxSql.sql中的语句，创建bjx_crawler数据库，并在其中创建表pages。读取内容包括url、标题、来源、作者、日期、时间、新闻内容等
+利用[bjxSql.sql](/bjxSql.sql/)中的语句，创建bjx_crawler数据库，并在其中创建表pages。读取内容包括url、标题、来源、作者、日期、时间、新闻内容等
 。
 ## 北极星电力网简介
 [北极星电力网](www.bjx.com.cn)是中国电力行业成立最早、影响力最大的垂直门户网站。旗下包括火力发电、风力发电、太阳能光伏、电网、核电、水力发电、电力环保、电力建设、电力信息化等行业，以及电力招聘和电力论坛等。本爬虫只爬取网站上的新闻信息，不包括招聘信息以及论坛等。
@@ -43,7 +43,7 @@ http://www.chinasmartgrid.com.cn/news/
 
 可以利用一些已知的正确url设定日期区间，提高效率。利用新闻列表页面`http://news.bjx.com.cn/zt.asp?topic=XXXX&page=XX`。`topic`后内容为话题的gb2312编码，`page`表示新闻列表的页码。不利用该列表进行内容爬取的原因在于：页码存在上限，对于热门话题存在大量新闻时，无法获得早期的新闻内容；所得新闻与话题相关，不具有广泛性，也不具有随机性。
 
-
+由于网站早期管理混乱，一些更早的新闻具有更大的编号，导致“日期区间”内不存在该编号。此外也存在某些新闻被删除的情况，其编号也不存在。这些错误编号放入errorID.txt中。
 
 ### 参考文献
 [1] R. Mitchell, 著. 陶俊杰, 陈小莉, 译. Python网络数据采集. 北京: 人民邮电出版社, 2016.
