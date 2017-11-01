@@ -1,5 +1,5 @@
 # bjxcrawler
-## introduction
+## Introduction
 This is a crawler of news in the website of BEIJIXING POWER (bjx.com.cn). A MySQL database is created and used for storing the information of web pages. Based on the huge amount of text information about electrical power and energy in China and foriegn countries, one can explore the relationship between social concerns and actual industry data, by NLP and data minning.
 
 ## 介绍
