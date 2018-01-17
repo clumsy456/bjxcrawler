@@ -192,6 +192,8 @@ try:
 						pageUrl = url[:-6] + '-%d' % urlPage + url[-6:]
 						newBsObj = crawl(pageUrl)
 						content = content + getContent(newBsObj, headType)
+					if len(content) >= 21000:
+						content = content[0:21000]
 					store(url, title, source, author, editDate, editTime, content)
 					finishUrls.add(url)
 					dateIsCorrect = True
