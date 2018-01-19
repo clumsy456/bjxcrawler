@@ -53,5 +53,10 @@ http://www.chinasmartgrid.com.cn/news/
 
 对于无法用`gbk`解码的新闻页面，将其url存入[decodeErrorReading.txt](/bjxCrawler_v2/decodeErrorReading.txt/)中，下次爬虫时进行跳过。
 
+## Version3
+这一版基于[Version2](/bjxCrawler_v2/)，利用Version2里已读的记录作为根链接，即通过[getFinishedasRoot.py](/bjxCrawler_v3/getFinishedasRoot.py/)将已读记录存入[finishRootUrls.txt](/bjxCrawler_v3/finishRootUrls.txt/)中。对于根链接之间形成的区间，从左节点向右爬取，若连续10个ID均错误，则从右节点向左爬取，直到连续10个ID均错误或爬完整个区间。
+
+将最新的已爬取的左ID、日期、空步，右ID、日期、空步，以及第几个区间存入[latestInfo.txt](/bjxCrawler_v3/latestInfo.txt/)中，作为下一次爬取的起点。
+
 ### 参考文献
 [1] R. Mitchell, 著. 陶俊杰, 陈小莉, 译. Python网络数据采集. 北京: 人民邮电出版社, 2016.
