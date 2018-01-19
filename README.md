@@ -58,5 +58,7 @@ http://www.chinasmartgrid.com.cn/news/
 
 将最新的已爬取的左ID、日期、空步，右ID、日期、空步，以及第几个区间存入[latestInfo.txt](/bjxCrawler_v3/latestInfo.txt/)中，作为下一次爬取的起点。
 
+另外，可以对已读取的根链接进行分割，从而方便地实现多进程爬虫。
+
 ### 参考文献
 [1] R. Mitchell, 著. 陶俊杰, 陈小莉, 译. Python网络数据采集. 北京: 人民邮电出版社, 2016.
