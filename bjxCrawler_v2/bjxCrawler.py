@@ -7,7 +7,7 @@ import datetime
 from random import choice, randint
 from userAgents import agents
 
-IDStep = 100
+IDStep = 25
 
 urlHeads = ['news.bjx.com.cn/html/',
 			'shupeidian.bjx.com.cn/html/',
@@ -37,12 +37,12 @@ with open('latestInfo.txt', 'r') as f:
 finishUrls = set()
 
 decodeErrorUrls = set()
-with open('decodeErrorReading.txt', 'r') as f:
+with open('../decodeErrorReading.txt', 'r') as f:
 	for line in f.readlines():
 		decodeErrorUrls.add(line.strip())
 
 errorIDs = set()
-with open('errorID.txt', 'r') as f:
+with open('../errorID.txt', 'r') as f:
 	for line in f.readlines():
 		errorIDs.add(int(line.strip()))
 
@@ -213,10 +213,10 @@ try:
 			latestID = urlID
 			print('日期区间为%s到%s' % (latestDate, upperLimitDate))
 			errorIDs.add(urlID)
-			with open('errorID.txt', 'a') as f:
+			with open('../errorID.txt', 'a') as f:
 				f.write(str(urlID) + '\n')
 except UnicodeDecodeError as e:
-	with open('decodeErrorReading.txt', 'a') as f:
+	with open('../decodeErrorReading.txt', 'a') as f:
 		f.write(url + '\n')
 	print('编码错误' + url)
 	print('Error:', e)
