@@ -245,7 +245,7 @@ try:
                     emptyStepRight = 0
                     num += 1
                 else:
-                    emptyStepRight -= 1
+                    emptyStepRight += 1
             else:
                 latestRangeID += 1
                 latestIDLeft, latestDateLeft, latestIDRight, latestDateRight = rangeGen(rootUrls, latestRangeID)
