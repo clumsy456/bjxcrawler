@@ -252,7 +252,12 @@ try:
                 emptyStepLeft = 0
                 emptyStepRight = 0
                 print('更新url区间为:%s/%d-%s/%d' % (latestDateLeft, latestIDLeft, latestDateRight, latestIDRight))
-
+        if emptyStepLeft == 10 and emptyStepRight == 10:
+            latestRangeID += 1
+            latestIDLeft, latestDateLeft, latestIDRight, latestDateRight = rangeGen(rootUrls, latestRangeID)
+            emptyStepLeft = 0
+            emptyStepRight = 0
+            print('更新url区间为:%s/%d-%s/%d' % (latestDateLeft, latestIDLeft, latestDateRight, latestIDRight))
 except UnicodeDecodeError as e:
     with open('../decodeErrorReading.txt', 'a') as f:
         f.write(urlState[0] + '\n')
