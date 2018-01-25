@@ -30,7 +30,13 @@ with open('finishRootUrls.txt', 'r') as f:
 
 
 with open('latestInfo.txt', 'r') as f:
-    latestIDLeft = int(f.readline().strip())
+        firstLine = f.readline().strip()
+    if firstLine == 'end':
+        print('本轮读取完成')
+        cur.close()
+        conn.close()
+        exit()
+    latestIDLeft = int(firstLine)
     latestDateLeft = f.readline().strip()
     emptyStepLeft = int(f.readline().strip())
     latestIDRight = int(f.readline().strip())
@@ -274,12 +280,17 @@ finally:
     print('最新已读ID及日期:')
     print(latestDateLeft + '/' + str(latestIDLeft) + '---' + latestDateRight + '/' + str(latestIDRight))
     print('最新范围:')
-    print(rootUrls[latestRangeID] + '\n' + rootUrls[latestRangeID+1])
-    with open('latestInfo.txt', 'w') as f:
-        f.write(str(latestIDLeft) + '\n')
-        f.write(latestDateLeft + '\n')
-        f.write(str(emptyStepLeft) + '\n')
-        f.write(str(latestIDRight) + '\n')
-        f.write(latestDateRight + '\n')
-        f.write(str(emptyStepRight) + '\n')
-        f.write(str(latestRangeID) + '\n')
+    try:
+        print(rootUrls[latestRangeID] + '\n' + rootUrls[latestRangeID+1])
+        with open('latestInfo.txt', 'w') as f:
+            f.write(str(latestIDLeft) + '\n')
+            f.write(latestDateLeft + '\n')
+            f.write(str(emptyStepLeft) + '\n')
+            f.write(str(latestIDRight) + '\n')
+            f.write(latestDateRight + '\n')
+            f.write(str(emptyStepRight) + '\n')
+            f.write(str(latestRangeID) + '\n')
+    except IndexError:
+        print('end')
+        with open('latestInfo.txt', 'w') as f:
+            f.write('end\n')
