@@ -30,7 +30,7 @@ with open('finishRootUrls.txt', 'r') as f:
 
 
 with open('latestInfo.txt', 'r') as f:
-        firstLine = f.readline().strip()
+    firstLine = f.readline().strip()
     if firstLine == 'end':
         print('本轮读取完成')
         cur.close()
